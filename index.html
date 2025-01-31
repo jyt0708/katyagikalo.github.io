@@ -94,16 +94,21 @@
     <div id="info-box-container" style="position: absolute; top: 10px; left: 10px;"></div>
     <div id="info-box"></div>
     <div id="slider-container">
-        <button id="select-all-btn">Select All</button>
-        <button id="deselect-all-btn">Deselect All</button>
+        <label><input type="checkbox" id="temperatureCheckbox" checked
+                      onclick="toggleSlider('temperature')"> 2m
+            Temperature (°C)</label>
+        <label><input type="checkbox" id="radiationCheckbox" checked onclick="toggleSlider('radiation')">
+            Surface Net Solar Radiation (W/m²)</label>
+        <label><input type="checkbox" id="precipCheckbox" checked onclick="toggleSlider('precip')"> Total
+            Precipitation (mm/day)</label>
 
         <label for="temperature-slider">Temperature:</label>
         <input type="range" id="temperature-slider" min="5" max="30" value="12" />
         <span id="temperature-value">12&degC</span>
 
-        <label for="humidity-slider">Humidity</label>
+       <!-- <label for="humidity-slider">Humidity</label>
         <input type="range" id="humidity-slider" min="0" max="100" value="60" />
-        <span id="humidity-value">60%</span>
+        <span id="humidity-value">60%</span>-->
 
         <label for="precipitation-slider">Rainfall:</label>
         <input type="range" id="precipitation-slider" min="0" max="100" value="35" />
@@ -113,10 +118,41 @@
         <input type="range" id="radiation-slider" min="0" max="50" value="5" />
         <span id="radiation-value">5 W/m<sup>2</sup></span>
 
+        <!-- Additional hidden parameters with checkboxes for toggling -->
+        <div class="parameter-group">
+            <label><input type="checkbox" id="dewpointCheckbox" onclick="toggleSlider('dewpoint')"> 2m Dewpoint
+                Temperature (°C)</label>
+            <label><input type="checkbox" id="snowCheckbox" onclick="toggleSlider('snow')"> Snow Cover
+                (cm)</label>
+            <label><input type="checkbox" id="runoffCheckbox" onclick="toggleSlider('runoff')"> Runoff
+                (mm/day)</label>
+            <label><input type="checkbox" id="soilEvapCheckbox" checked onclick="toggleSlider('soilEvap')">
+            Evaporation from Bare Soil (mm/day)</label>
+            <label><input type="checkbox" id="totalEvapCheckbox" onclick="toggleSlider('totalEvap')"> Total
+                Evaporation (mm/day)</label>
+        </div>
+
+        <div class="parameter-group" id="dewpoint" style="display:none;">
+            <label for="dewpoint-slider">2m Dewpoint Temperature:</label>
+            <input type="range" id="dewpoint-slider" min="-20" max="30" value="15" />
+            <span id="dewpoint-value">15&degC</span>
+        </div>
+
+        <div class="parameter-group" id="snow" style="display:none;">
+            <label for="snow-slider">Snow Cover:</label>
+            <input type="range" id="snow-slider" min="0" max="100" value="0" />
+            <span id="snow-value">0 cm</span>
+        </div>
+
+
+        <button id="select-all-btn">Select All</button>
+        <button id="deselect-all-btn">Deselect All</button>
         <label for="district-dropdown">Select District:</label>
         <select id="district-dropdown">
             <option value="">-- Select a District --</option>
         </select>
+
+
 
     </div>
 <script src="script.js"></script>
